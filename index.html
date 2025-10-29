@@ -22,15 +22,62 @@
       color: #e0e0e0;
       cursor: pointer;
     }
+    #start-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #000;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      z-index: 9999;
+    }
   </style>
+</head>
+<body>
+
+  <!-- Unlock overlay -->
+  <div id="start-overlay">
+    <button id="start-button">Enter the story</button>
+  </div>
+
+  <!-- Silent audio to unlock autoplay -->
+  <audio id="unlock" src="data:audio/mp3;base64,//uQxAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAACcQCA... (short silent mp3)" preload="auto"></audio>
+
+  <!-- Preload actual audio -->
+  <audio id="click" src="https://mcdn.podbean.com/mf/download/acpep6bbqk9ciehp/Click.mp3" preload="auto"></audio>
+  <audio id="footsteps" src="https://YOUR_AUDIO_URL/footsteps.mp3" preload="auto"></audio>
+  <audio id="whisper" src="https://YOUR_AUDIO_URL/whisper.mp3" preload="auto"></audio>
+
+  <!-- Story Scenes -->
+  <div class="scene">
+    <p>Outside, the wind stirred the trees. The porch light flickered once, then again. She paused at the door, staring up at the <span class="trigger-word" data-sound="click">window</span> above it.</p>
+  </div>
+  <div class="scene">
+    <p>Inside, the house was quiet. Too quiet. The TV buzzed faintly in the background, casting shadows across the VHS tapes stacked beside it. She stepped into the kitchen. The rotary phone on the wall was still. Then she heard it—a <span class="trigger-word" data-sound="click">click</span>.</p>
+  </div>
+  <div class="scene">
+    <p>Another <span class="trigger-word" data-sound="click">click</span>. Then <span class="trigger-word" data-sound="footsteps">footsteps</span> overhead.</p>
+  </div>
+  <div class="scene">
+    <p>She looked up. The attic door was ajar.</p>
+    <p>She whispered, “<span class="trigger-word" data-sound="whisper">I see you</span>.”</p>
+  </div>
+
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("start-button").addEventListener("click", () => {
+      const unlock = document.getElementById("unlock");
+      unlock.play().catch(() => {});
+      document.getElementById("start-overlay").style.display = "none";
+
       const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             const id = entry.target.dataset.sound;
             const audio = document.getElementById(id);
-            if (audio) audio.play();
+            if (audio) audio.play().catch(() => {});
             observer.unobserve(entry.target);
           }
         });
@@ -41,43 +88,11 @@
         el.addEventListener("click", () => {
           const id = el.dataset.sound;
           const audio = document.getElementById(id);
-          if (audio) audio.play();
+          if (audio) audio.play().catch(() => {});
         });
       });
     });
   </script>
-</head>
-<body>
-
-  <!-- Preload audio -->
-  <audio id="click" src="https://mcdn.podbean.com/mf/download/acpep6bbqk9ciehp/Click.mp3" preload="auto"></audio>
-  <audio id="footsteps" src="https://YOUR_AUDIO_URL/footsteps.mp3" preload="auto"></audio>
-  <audio id="whisper" src="https://YOUR_AUDIO_URL/whisper.mp3" preload="auto"></audio>
-
-  <!-- Scene 1 -->
-  <div class="scene">
-    <p>Outside, the wind stirred the trees. The porch light flickered once, then again. She paused at the door, staring up at the <span class="trigger-word" data-sound="click">window</span> above it.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet facilisis urna. Praesent ultrices, justo at fermentum cursus, sapien sapien tincidunt nulla, nec tincidunt nunc nulla non nisi. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
-  </div>
-
-  <!-- Scene 2 -->
-  <div class="scene">
-    <p>Inside, the house was quiet. Too quiet. The TV buzzed faintly in the background, casting shadows across the VHS tapes stacked beside it. She stepped into the kitchen. The rotary phone on the wall was still. Then she heard it—a <span class="trigger-word" data-sound="click">click</span>.</p>
-    <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Sed aliquam, nisi quis porttitor congue, elit erat euismod orci, ac placerat dolor lectus quis orci. Phasellus consectetuer vestibulum elit.</p>
-  </div>
-
-  <!-- Scene 3 -->
-  <div class="scene">
-    <p>Another <span class="trigger-word" data-sound="click">click</span>. Then <span class="trigger-word" data-sound="footsteps">footsteps</span> overhead.</p>
-    <p>Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu. Cras consequat.</p>
-  </div>
-
-  <!-- Scene 4 -->
-  <div class="scene">
-    <p>She looked up. The attic door was ajar.</p>
-    <p>She whispered, “<span class="trigger-word" data-sound="whisper">I see you</span>.”</p>
-    <p>Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.</p>
-  </div>
 
 </body>
 </html>
