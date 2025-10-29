@@ -17,9 +17,32 @@
     .trigger-word {
       font-weight: bold;
       color: #e0e0e0;
+      cursor: pointer;
     }
   </style>
-  <script src="theworm.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.dataset.sound;
+            const audio = document.getElementById(id);
+            if (audio) audio.play();
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      document.querySelectorAll('.trigger-word').forEach(el => {
+        observer.observe(el);
+        el.addEventListener("click", () => {
+          const id = el.dataset.sound;
+          const audio = document.getElementById(id);
+          if (audio) audio.play();
+        });
+      });
+    });
+  </script>
 </head>
 <body>
 
@@ -44,4 +67,3 @@
 
 </body>
 </html>
-
