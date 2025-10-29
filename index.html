@@ -14,6 +14,9 @@
       max-width: 700px;
       margin: auto;
     }
+    .scene {
+      margin: 100vh 0;
+    }
     .trigger-word {
       font-weight: bold;
       color: #e0e0e0;
@@ -46,24 +49,35 @@
 </head>
 <body>
 
-  <!-- Scroll padding to ensure triggers enter view -->
-  <div style="height: 100vh;"></div>
-
   <!-- Preload audio -->
   <audio id="click" src="https://mcdn.podbean.com/mf/download/acpep6bbqk9ciehp/Click.mp3" preload="auto"></audio>
   <audio id="footsteps" src="https://YOUR_AUDIO_URL/footsteps.mp3" preload="auto"></audio>
   <audio id="whisper" src="https://YOUR_AUDIO_URL/whisper.mp3" preload="auto"></audio>
 
-  <!-- Story -->
-  <p>Outside, the wind stirred the trees. The porch light flickered once, then again. She paused at the door, staring up at the <span class="trigger-word" data-sound="click">window</span> above it.</p>
+  <!-- Scene 1 -->
+  <div class="scene">
+    <p>Outside, the wind stirred the trees. The porch light flickered once, then again. She paused at the door, staring up at the <span class="trigger-word" data-sound="click">window</span> above it.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet facilisis urna. Praesent ultrices, justo at fermentum cursus, sapien sapien tincidunt nulla, nec tincidunt nunc nulla non nisi. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+  </div>
 
-  <p>Inside, the house was quiet. Too quiet. The TV buzzed faintly in the background, casting shadows across the VHS tapes stacked beside it. She stepped into the kitchen. The rotary phone on the wall was still. Then she heard it—a <span class="trigger-word" data-sound="click">click</span>.</p>
+  <!-- Scene 2 -->
+  <div class="scene">
+    <p>Inside, the house was quiet. Too quiet. The TV buzzed faintly in the background, casting shadows across the VHS tapes stacked beside it. She stepped into the kitchen. The rotary phone on the wall was still. Then she heard it—a <span class="trigger-word" data-sound="click">click</span>.</p>
+    <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Sed aliquam, nisi quis porttitor congue, elit erat euismod orci, ac placerat dolor lectus quis orci. Phasellus consectetuer vestibulum elit.</p>
+  </div>
 
-  <p>Another <span class="trigger-word" data-sound="click">click</span>. Then <span class="trigger-word" data-sound="footsteps">footsteps</span> overhead.</p>
+  <!-- Scene 3 -->
+  <div class="scene">
+    <p>Another <span class="trigger-word" data-sound="click">click</span>. Then <span class="trigger-word" data-sound="footsteps">footsteps</span> overhead.</p>
+    <p>Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu. Cras consequat.</p>
+  </div>
 
-  <p>She looked up. The attic door was ajar.</p>
-
-  <p>She whispered, “<span class="trigger-word" data-sound="whisper">I see you</span>.”</p>
+  <!-- Scene 4 -->
+  <div class="scene">
+    <p>She looked up. The attic door was ajar.</p>
+    <p>She whispered, “<span class="trigger-word" data-sound="whisper">I see you</span>.”</p>
+    <p>Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.</p>
+  </div>
 
 </body>
 </html>
